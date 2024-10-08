@@ -10,12 +10,15 @@ def plus_print(color_offset, long, color, offset):
 for i in range(8):
     square_print(25, RED, 0)
 
-print('\x1b[8A')
+print('\x1b[9A')
+print('\x1b[25D')
 
 for i in range(8):
     if i == 0 or i == 1 or i == 5 or i == 6:
         plus_print(RED, 6, WHITE, 9)
     if i == 3 or i == 4:
         plus_print(RED, 18, WHITE, 3)
+
+print('\x1b[1B')
 
 
