@@ -1,15 +1,15 @@
 with open('sequence.txt') as f:
     a = [float(c) for c in f]
-nado = 0
-ost = 0
+need = 0
+last = 0
 for i in range(len(a)):
     if -3 <= i <= 3:
-        nado += 1
+        need += 1
     else:
-        ost += 1
+        last += 1
 
-nado_pro = int(nado / len(a) * 100) + 1 #округление
-ost_pro = int(ost / len(a) * 100)
+need_procent = int(need / len(a) * 100) + 1 #округление
+last_procent = int(last / len(a) * 100)
 
-print(f'\x1b[48;5;81m{' ' * nado_pro}\x1b[0m')
-print(f'\x1b[48;5;82m{' ' * ost_pro}\x1b[0m')
+print(f'\x1b[48;5;81m{' ' * need_procent}\x1b[0m')
+print(f'\x1b[48;5;82m{' ' * last_procent}\x1b[0m')
