@@ -1,36 +1,39 @@
 import time
 
-offset = 12
-line = 4
-
-WHITE = 7
-YELLOW = 3
-BLUE = 4
-colors = [WHITE,  YELLOW, BLUE]
-
-def print_line(offset, long, color):
-    return f'{offset * ' '}\x1b[48;5;{color}m{' ' * long}\x1b[{offset//2 * ' '}C\x1b[0m'
-print(print_line(offset, line, WHITE) + print_line(offset, line, WHITE))
-print(print_line(offset - 4, line, WHITE) + print_line(offset - 4, line, WHITE))
-
-# while True:
-#     for color in colors:
-        # print(f'{offset * 8}\x1b[48;5;{color}m{line * 8}\x1b[0m{offset * 12}\x1b[48;5;{color}m{line * 8}\x1b[0m')
-        # print(f'{offset * 6}\x1b[48;5;{color}m{line * 4}\x1b[0m{offset * 4}\x1b[48;5;{color}m{line * 4}\x1b[0m{offset * 8}\x1b[48;5;{color}m{line * 4}\x1b[0m\x1b[0m{offset * 4}\x1b[48;5;{color}m{line * 4}\x1b[0m')
-        # print(f'{offset * 4}\x1b[48;5;{color}m{line * 4}\x1b[0m{offset * 8}\x1b[48;5;{color}m{line * 4}\x1b[0m{offset * 4}\x1b[48;5;{color}m{line * 4}\x1b[0m\x1b[0m{offset * 8}\x1b[48;5;{color}m{line * 4}\x1b[0m')
-        # print(f'{offset * 2}\x1b[48;5;{color}m{line * 4}\x1b[0m{offset * 12}\x1b[48;5;{color}m{line * 4}\x1b[0m{offset * 0}\x1b[48;5;{color}m{line * 4}\x1b[0m\x1b[0m{offset * 12}\x1b[48;5;{color}m{line * 4}\x1b[0m')
-        # print(f'{offset * 4}\x1b[48;5;{color}m{line * 4}\x1b[0m{offset * 8}\x1b[48;5;{color}m{line * 4}\x1b[0m{offset * 4}\x1b[48;5;{color}m{line * 4}\x1b[0m\x1b[0m{offset * 8}\x1b[48;5;{color}m{line * 4}\x1b[0m')
-        # print(f'{offset * 6}\x1b[48;5;{color}m{line * 4}\x1b[0m{offset * 4}\x1b[48;5;{color}m{line * 4}\x1b[0m{offset * 8}\x1b[48;5;{color}m{line * 4}\x1b[0m\x1b[0m{offset * 4}\x1b[48;5;{color}m{line * 4}\x1b[0m')
-        # print(f'{offset * 8}\x1b[48;5;{color}m{line * 8}\x1b[0m{offset * 12}\x1b[48;5;{color}m{line * 8}\x1b[0m')
-        # for i in range(7):
-        #     print(print_line(offset, line, color) + print_line(offset, line, color))
-        #     if i <= 3:
-        #         offset -= 4
-        #     if i > 3:
-        #         offset += 4
+def print_line(offset_f, long, color, offset_b):
+    up = f'{offset_f * " "}\x1b[48;5;{color}m{" " * long}\x1b[{offset_b * " "}\x1b[0m'
+    down = f'{offset_b * " "}\x1b[48;5;{color}m{" " * long}\x1b[{offset_f * " "}\x1b[0m'
+    return up + down
 
 
+def circle():
+    WHITE = 7
+    YELLOW = 3
+    BLUE = 4
+    colors = [WHITE,  YELLOW, BLUE]
 
-        # time.sleep(1)
-        # print('\x1b[8A')
+    while True:
+        for color in colors:
+            offset_f = 12
+            offset_b = 0
+            offset_f_down = 12
+            line = 4
+            for i in range(7):
+                print(print_line(offset_f, line, color, offset_b) + print_line(offset_f_down, line, color, offset_b))
+                if i < 3:
+                    offset_f_down -= 4
+                    offset_f -= 2
+                    offset_b += 4
+                if i >= 3:
+                    offset_f_down += 4
+                    offset_f += 2
+                    offset_b -= 4
+
+            time.sleep(1)
+            print('\x1b[9A')
+            print(f'\x1b[{offset_f * 3}C')
+
+
+if __name__ == '__main__':
+    circle()
         
