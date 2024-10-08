@@ -11,5 +11,5 @@ for i in range(len(a)):
 need_procent = int(need / len(a) * 100) + 1 #округление
 last_procent = int(last / len(a) * 100)
 
-print(f'\x1b[48;5;81m{' ' * need_procent}\x1b[0m')
-print(f'\x1b[48;5;82m{' ' * last_procent}\x1b[0m')
+print(f'\x1b[48;5;81m{" " * need_procent}\x1b[0m')
+print(f'\x1b[48;5;82m{" " * last_procent}\x1b[0m')
