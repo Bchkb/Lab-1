@@ -2,10 +2,10 @@ RED = 1
 WHITE = 7
 
 def square_print(long, color, offset):
-    print(f'{offset * ' '}\x1b[48;5;{color}m{long * ' '}\x1b[0m')
+    print(f'{offset * " "}\x1b[48;5;{color}m{long * " "}\x1b[0m')
 
 def plus_print(color_offset, long, color, offset):
-    print(f'\x1b[48;5;{color_offset}m{offset * ' '}\x1b[48;5;{color}m{long * ' '}\x1b[0m')
+    print(f'\x1b[48;5;{color_offset}m{offset * " "}\x1b[48;5;{color}m{long * " "}\x1b[0m')
 
 for i in range(8):
     square_print(25, RED, 0)
